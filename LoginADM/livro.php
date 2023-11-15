@@ -1,6 +1,6 @@
 <?php
 require_once '../Config/config.php';
-require_once '../App/Controller/LivroController.php';
+require_once 'App/Controller/LivroController.php';
 
 $livroController = new LivroController($pdo);
 
@@ -31,6 +31,7 @@ $livros = $livroController->listarLivros();
     <title>CRUD com MVC e PDO</title>
 </head>
 <body>
+    <a href="index.php">Voltar</a>
     <h1>Livros</h1>
     <form method="post">
         <input type="text" name="nome" placeholder="Nome" required>

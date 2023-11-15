@@ -1,5 +1,5 @@
 <?php
-require_once '../App/Model/UserModel.php';
+require_once 'App/Model/UserModel.php';
 
 
 class UserController {
@@ -20,7 +20,7 @@ class UserController {
 
     public function exibirListaUsers() {
         $users = $this->userModel->listarUsers();
-        include '../App/View/Usuarios/lista.php';
+        include 'App/View/Usuarios/lista.php';
     }
 
     public function atualizarUser($id, $nome, $email, $senha, $tipo_usuario) {

@@ -1,6 +1,6 @@
 <?php
 require_once '../Config/config.php';
-require_once '../App/Controller/UserController.php';
+require_once 'App/Controller/UserController.php';
 
 $userController = new UserController($pdo);
 
@@ -33,6 +33,7 @@ $users = $userController->listarUsers();
     <title>CRUD com MVC e PDO</title>
 </head>
 <body>
+    <a href="index.php">Voltar</a>
     <h1>Users</h1>
     <form method="post">
         <input type="text" name="nome" placeholder="Nome Usuário" required>

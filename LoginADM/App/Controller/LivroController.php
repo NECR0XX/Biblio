@@ -1,5 +1,5 @@
 <?php
-require_once '../App/Model/LivroModel.php';
+require_once 'App/Model/LivroModel.php';
 
 
 class LivroController {
@@ -20,7 +20,7 @@ class LivroController {
 
     public function exibirListaLivros() {
         $livros = $this->livroModel->listarLivros();
-        include '../App/View/Livros/lista.php';
+        include 'App/View/Livros/lista.php';
     }
 
     public function atualizarLivro($livro_id, $nome, $categoria) {
