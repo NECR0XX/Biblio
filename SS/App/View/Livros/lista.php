@@ -12,7 +12,6 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Categoria</th>
-                        <th>Quantidade</th>
                     </tr>
                 </thead>
                 <?php foreach ($livros as $livro): ?>
@@ -21,7 +20,6 @@
                             <td><?php echo $livro['livro_id']; ?></td>
                             <td><?php echo $livro['nome']; ?></td>
                             <td><?php echo $livro['categoria']; ?></td>
-                            <td><?php echo $livro['quantidade']; ?></td>
                         </tr>
                 <?php endforeach; ?>
                 <tbody>

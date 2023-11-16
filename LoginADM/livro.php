@@ -5,15 +5,16 @@ require_once 'App/Controller/LivroController.php';
 $livroController = new LivroController($pdo);
 
 if (isset($_POST['nome']) && 
-    isset($_POST['categoria'])) 
+    isset($_POST['categoria']) &&
+    isset($_POST['quantidade'])) 
 {
-    $livroController->criarLivro($_POST['nome'], $_POST['categoria']);
+    $livroController->criarLivro($_POST['nome'], $_POST['categoria'], $_POST['quantidade']);
     header('Location: #');
 }
 
 // Atualiza Livro
-if (isset($_POST['livro_id']) && isset($_POST['atualizar_nome']) && isset($_POST['atualizar_categoria'])) {
-    $livroController->atualizarLivro($_POST['livro_id'], $_POST['atualizar_nome'], $_POST['atualizar_categoria']);
+if (isset($_POST['livro_id']) && isset($_POST['atualizar_nome']) && isset($_POST['atualizar_categoria']) && isset($_POST['atualizar_quantidade'])) {
+    $livroController->atualizarLivro($_POST['livro_id'], $_POST['atualizar_nome'], $_POST['atualizar_categoria'], $_POST['atualizar_quantidade']);
 }
 
 // Excluir Livro
@@ -36,6 +37,7 @@ $livros = $livroController->listarLivros();
     <form method="post">
         <input type="text" name="nome" placeholder="Nome" required>
         <input type="text" name="categoria" placeholder="Categoria" required>
+        <input type="number" name="quantidade" placeholder="Qntd De Livros" min="1" max="3" required>
         <button type="submit">Adicionar Livro</button>
     </form>
 
@@ -58,7 +60,8 @@ $livroController->exibirListaLivros();
                                 <?php endforeach; ?>
         </select>
                 <input type="text" name="atualizar_nome" placeholder="Novo Nome" required>
-                <input type="text" name="atualizar_categoria" placeholder="Nova livro" required>
+                <input type="text" name="atualizar_categoria" placeholder="Nova categoria" required>
+                <input type="number" name="atualizar_quantidade" placeholder="Nova qntd De Livros" min="1" max="3" required>
         <button type="submit">Atualizar Livro</button>
     </form>
 

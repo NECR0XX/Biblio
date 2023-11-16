@@ -10,8 +10,8 @@ class LivroController {
         $this->livroModel = new LivroModel($pdo);
     }
 
-    public function criarLivro($nome, $categoria) {
-        $this->livroModel->criarLivro($nome, $categoria);
+    public function criarLivro($nome, $categoria, $quantidade) {
+        $this->livroModel->criarLivro($nome, $categoria, $quantidade);
     }
 
     public function listarLivros() {
@@ -23,8 +23,8 @@ class LivroController {
         include 'App/View/Livros/lista.php';
     }
 
-    public function atualizarLivro($livro_id, $nome, $categoria) {
-        $this->livroModel->atualizarLivro($livro_id, $nome, $categoria);
+    public function atualizarLivro($livro_id, $nome, $categoria, $quantidade) {
+        $this->livroModel->atualizarLivro($livro_id, $nome, $categoria, $quantidade);
     }
     
     public function excluirLivro ($livro_id) {

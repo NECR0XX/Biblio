@@ -7,10 +7,10 @@ class LivroModel {
     }
 
     // Model para criar Livros
-    public function criarLivro($nome, $categoria) {
-        $sql = "INSERT INTO livros (nome, categoria) VALUES (?, ?)";
+    public function criarLivro($nome, $categoria, $quantidade) {
+        $sql = "INSERT INTO livros (nome, categoria, quantidade) VALUES (?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$nome, $categoria]);
+        $stmt->execute([$nome, $categoria, $quantidade]);
     }
 
     // Model para listar Livros
@@ -21,10 +21,10 @@ class LivroModel {
     }
 
     // Model para atualizar Livros
-    public function atualizarLivro($livro_id, $nome, $categoria){
-        $sql = "UPDATE livros SET nome = ?, categoria = ? WHERE livro_id = ?";
+    public function atualizarLivro($livro_id, $nome, $categoria, $quantidade){
+        $sql = "UPDATE livros SET nome = ?, categoria = ?, quantidade = ? WHERE livro_id = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$nome, $categoria, $livro_id]);
+        $stmt->execute([$nome, $categoria, $quantidade, $livro_id]);
     }
     
     // Model para deletar Livro
