@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Nov-2023 às 20:34
+-- Tempo de geração: 16-Nov-2023 às 18:56
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `emprestimos` (
   `emprestimo_id` int(11) NOT NULL,
-  `livro_emprestimo` int(11) NOT NULL,
-  `aluno_emprestimo` int(11) NOT NULL,
+  `livro_emprestimo` varchar(255) NOT NULL,
+  `aluno_emprestimo` varchar(255) NOT NULL,
   `data_emprestimo` date NOT NULL,
   `data_devolucao` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -53,8 +53,8 @@ CREATE TABLE `livros` (
 --
 
 INSERT INTO `livros` (`livro_id`, `nome`, `categoria`, `quantidade`) VALUES
-(9, 'Moby Dyck', 'Ficção', 2),
-(10, 'O Pequeno Príncipe ', 'Infantil ', 3),
+(9, 'Moby Dyck	', 'Ficção	', 3),
+(10, 'O Pequeno Príncipe	', 'Infantil	', 2),
 (11, '7 Desafios para ser Rei', 'Fantasia', 1);
 
 -- --------------------------------------------------------
@@ -79,7 +79,8 @@ INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `tipo_usuario`) VALUES
 (6, 'Bibliotecário ', 'biblio@gmail.com', 'qawsed', 1),
 (7, 'Bibliotecária', 'biblio@gmail.com', '12345', 1),
 (8, 'Administrador', 'biblio@gmail.com', 'qweasd', 1),
-(9, 'Wesley', 'wesley@gmail.com', '12345', 2);
+(9, 'Wesley', 'wesley@gmail.com', '12345', 2),
+(10, 'Fabio', 'fabio@gmail.com', 'qawsed', 2);
 
 --
 -- Índices para tabelas despejadas
@@ -89,9 +90,7 @@ INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `tipo_usuario`) VALUES
 -- Índices para tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  ADD PRIMARY KEY (`emprestimo_id`),
-  ADD KEY `aluno_emprestimo` (`aluno_emprestimo`),
-  ADD KEY `livro_emprestimo` (`livro_emprestimo`);
+  ADD PRIMARY KEY (`emprestimo_id`);
 
 --
 -- Índices para tabela `livros`
@@ -125,18 +124,7 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `emprestimos`
---
-ALTER TABLE `emprestimos`
-  ADD CONSTRAINT `aluno_emprestimo` FOREIGN KEY (`aluno_emprestimo`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `livro_emprestimo` FOREIGN KEY (`livro_emprestimo`) REFERENCES `livros` (`livro_id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
