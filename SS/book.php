@@ -1,14 +1,33 @@
 <?php
 require_once '../Config/config.php';
 require_once 'App/Controller/LivroController.php';
+require_once 'App/Controller/EmprestimoController.php';
+
+session_start();
 
 $livroController = new LivroController($pdo);
+$emprestimoController = new EmprestimoController($pdo);
 
 $livros = $livroController->listarLivros();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['emprestar'])) {
+    $livroID = $_POST['livro_id'];
+    $livroNome = $_POST['nome'];
+    $usuarioNome = $_SESSION['usuarioNomedeUsuario'];
+
+    $emprestimoController->emprestarLivro($livroID, $livroNome, $usuarioNome);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
+    $livroID = $_POST['livro_id'];
+
+    $emprestimoController->devolverLivro($livroID);
+}
+
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,14 +43,13 @@ $livros = $livroController->listarLivros();
         <ion-icon name="person-circle-outline"></ion-icon>
     </div>
     <div class="user-info" id="user-info">
-    <?php
-        session_start();
-        include '../Login/verifica_login.php'
-    ?>
-    <h2>Olá <?php echo $_SESSION['usuarioNomedeUsuario'] , "!"; ?> </h2><br>
-    <button onclick="logout()"><h6>Sair</h6></button></div>
+        <?php include '../Login/verifica_login.php'; ?>
+        <h2>Olá <?php echo $_SESSION['usuarioNomedeUsuario'], "!"; ?> </h2><br>
+        <button onclick="logout()"><h6>Sair</h6></button>
+    </div>
 
     <a href="index.php">Voltar</a>
+    
     <h2>Lista de Livros</h2>
     <ul>
         <?php foreach ($livros as $livro): ?>
@@ -39,7 +57,7 @@ $livros = $livroController->listarLivros();
                 <?php echo $livro['nome']; ?> -
                 <?php echo $livro['categoria']; ?> -
                 <?php echo $livro['quantidade']; ?> -
-                <form method="post" action="App/Controller/emprestar.php">
+                <form method="post" action="book.php">
                     <input type="hidden" name="livro_id" value="<?php echo $livro['livro_id']; ?>">
                     <input type="hidden" name="nome" value="<?php echo $livro['nome']; ?>">
                     <button type="submit" name="emprestar">Emprestar</button>
@@ -48,33 +66,20 @@ $livros = $livroController->listarLivros();
         <?php endforeach; ?>
     </ul>
 
-<!-- Após o loop foreach em book.php -->
-<h2>Livros Emprestados</h2>
-<ul>
-    <?php if (isset($_SESSION['emprestimo'])): ?>
-        <?php foreach ($_SESSION['emprestimo'] as $emprestimo): ?>
+    <h2>Livros Emprestados</h2>
+    <ul>
+        <?php $livrosEmprestados = $emprestimoController->listarLivrosEmprestados($_SESSION['usuarioNomedeUsuario']); ?>
+        <?php foreach ($livrosEmprestados as $emprestimo): ?>
             <li>
-                <?php if (isset($emprestimo['livro_id'])): ?>
-                    ID do Livro: <?php echo $emprestimo['livro_id']; ?> - <br>
-                <?php endif; ?>
-
-                <?php if (isset($emprestimo['livro_nome'])): ?>
-                    Livro: <?php echo $emprestimo['livro_nome']; ?> -
-                <?php endif; ?>
-
-                <?php if (isset($emprestimo['usuario_nome'])): ?>
-                    Nome do Usuário: <?php echo $emprestimo['usuario_nome']; ?> -
-                    <form method="post" action="App/Controller/devolver.php">
-                        <input type="hidden" name="livro_id" value="<?php echo $emprestimo['livro_id']; ?>">
-                        <button type="submit" name="devolver">Devolver</button>
-                    </form>
-                <?php endif; ?>
+                <?php echo "ID do Livro: " . $emprestimo['livro_emprestimo']; ?> <br>
+                <?php echo "Livro: " . $emprestimo['nome_livro']; ?> <br>
+                <?php echo "Nome do Usuário: " . $emprestimo['aluno_emprestimo']; ?>
+                <form method="post" action="book.php">
+                    <input type="hidden" name="livro_id" value="<?php echo $emprestimo['emprestimo_id']; ?>">
+                    <button type="submit" name="devolver">Devolver</button>
+                </form>
             </li>
         <?php endforeach; ?>
-    <?php else: ?>
-        <li>Nenhum livro emprestado.</li>
-    <?php endif; ?>
-</ul>
-
+    </ul>
 </body>
 </html>

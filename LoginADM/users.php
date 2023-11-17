@@ -43,13 +43,6 @@ $users = $userController->listarUsers();
         <button type="submit">Adicionar User</button>
     </form>
 
-    <h2>Lista de Users</h2>
-    <ul>
-        <?php foreach ($users as $user): ?>
-            <li><?php echo $user['nome']; ?> - <?php echo $user['email']; ?> - <?php echo $user['senha']; ?> - <?php echo $user['tipo_usuario']; ?></li>
-        <?php endforeach; ?>
-    </ul>
-
 <?php
 $userController->exibirListaUsers();
 ?>
