@@ -8,7 +8,9 @@ class LivroModel {
 
     // Model para listar Livros
     public function listarLivros() {
-        $sql = "SELECT * FROM livros";
+        $sql = "SELECT L.*, CL.nome AS categoria_nome FROM livros L 
+                INNER JOIN categoria_livros CL ON L.categoria_id = CL.id 
+                ORDER BY CL.id ASC";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
