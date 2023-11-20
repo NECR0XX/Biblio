@@ -1,7 +1,15 @@
 <?php
-require_once '../../../../Config/config.php';
-require_once '../../../App/Controller/UserController.php';
-require_once '../../../SS/App/Controller/EmprestimoController.php';
+require_once 'C:\Users\Usuario\Documents\prog\Xano\htdocs\Biblio\Config\config.php';
+require_once 'C:\Users\Usuario\Documents\prog\Xano\htdocs\Biblio\LoginADM\App\Controller\UserController.php';
+require_once 'C:\Users\Usuario\Documents\prog\Xano\htdocs\Biblio\SS\App\Controller\EmprestimoController.php';
+
+$userId = $_GET['id'];
+$usuarioController = new UserController($pdo);
+$usuario = $usuarioController->listarLivrosEmprestadosporID($userId); // Supondo que você tenha um método semelhante para obter informações do usuário
+$usuarioNome = $usuario['nome']; // Substitua 'nome' pelo campo correto que armazena o nome do usuário
+
+$emprestimosUsuario = $emprestimoController->listarLivrosEmprestados($usuarioNome);
+
 
 if (isset($_GET['id'])) {
     $userId = $_GET['id'];

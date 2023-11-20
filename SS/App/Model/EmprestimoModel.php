@@ -57,14 +57,8 @@ class EmprestimoModel {
     public function listarLivrosEmprestados($usuarioNome) {
         $consultaLivrosEmprestados = $this->pdo->prepare("SELECT * FROM emprestimos WHERE aluno_emprestimo = ?");
         $consultaLivrosEmprestados->execute([$usuarioNome]);
-
+    
         return $consultaLivrosEmprestados->fetchAll(PDO::FETCH_ASSOC);
-    }
-    public function listarLivrosEmprestadosprID($usuarioNome) {
-        $listarLivrosEmprestadosprID = $this->pdo->prepare("SELECT * FROM emprestimos WHERE aluno_emprestimo = ?");
-        $listarLivrosEmprestadosprID->execute([$usuarioNome]);
-
-        return $listarLivrosEmprestadosprID->fetchAll(PDO::FETCH_ASSOC);
-    }
+    }    
 }
 ?>
