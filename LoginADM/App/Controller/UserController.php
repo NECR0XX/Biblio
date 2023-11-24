@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\Users\Usuario\Documents\prog\Xano\htdocs\Biblio\LoginADM\App\Model\UserModel.php';
+require_once 'App\Model\UserModel.php';
 
 
 class UserController {

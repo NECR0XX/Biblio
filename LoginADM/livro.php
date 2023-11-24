@@ -20,11 +20,6 @@ if (isset($_POST['nome']) &&
     header('Location: #');
 }
 
-// Atualiza Livro
-if (isset($_POST['livro_id']) && isset($_POST['atualizar_nome']) && isset($_POST['atualizar_categoria']) && isset($_POST['atualizar_quantidade']) && isset($_POST['atualizar_imagem']) && isset($_POST['atualizar_categoria_id'])) {
-    $livroController->atualizarLivro($_POST['livro_id'], $_POST['atualizar_nome'], $_POST['atualizar_categoria'], $_POST['atualizar_quantidade'], $_POST['atualizar_imagem'], $_POST['atualizar_categoria_id']);
-}
-
 // Excluir Livro
 if (isset($_POST['excluir_livro_id'])) {
     $livroController->excluirLivro($_POST['excluir_livro_id']);
@@ -57,21 +52,6 @@ $livros = $livroController->listarLivros();
 <?php
 $livroController->exibirListaLivros();
 ?>
-
-<h2>Atualizar Livro</h2>
-    <form method="post">
-        <select name="livro_id">
-        <?php foreach ($livros as $livro): ?>
-                                <option value="<?php echo $livro['livro_id']; ?>"><?php echo $livro['livro_id']; ?></option>
-                                <?php endforeach; ?>
-        </select>
-                <input type="text" name="atualizar_nome" placeholder="Novo Nome" required>
-                <input type="text" name="atualizar_categoria" placeholder="Nova categoria" required>
-                <input type="number" name="atualizar_quantidade" placeholder="Nova qntd De Livros" min="1" max="3" required>
-                <input type="file" name="atualizar_imagem" accept="image/*" required>
-                <input type="number" name="atualizar_categoria_id" required placeholder="Nova Categoria_id">
-        <button type="submit">Atualizar Livro</button>
-    </form>
 
     <h2>Excluir Livro</h2>
     <form method="post">
