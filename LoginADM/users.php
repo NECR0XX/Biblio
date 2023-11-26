@@ -31,7 +31,7 @@ $users = $userController->listarUsers();
 <html>
 <head>
     <link rel="shortcut icon" href="Public/Assets/_31554896-b491-466e-b129-d77e088c3b0c-removebg-preview.png" type="image/x-icon">
-    <title>CRUD com MVC e PDO</title>
+    <title>Usuários</title>
 </head>
 <body>
     <a href="index.php">Voltar</a>

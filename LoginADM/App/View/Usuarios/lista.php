@@ -14,7 +14,6 @@
                         <th>Email</th>
                         <th>Senha</th>
                         <th>Níveis de Permissão</th>
-                        <th>Emprestimos</th>
                     </tr>
                 </thead>
                 <?php foreach ($users as $user): ?>
@@ -25,11 +24,11 @@
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['senha']; ?></td>
                             <td><?php echo $user['tipo_usuario']; ?></td>
-                            <td><a href="App/View/Usuarios/emprestimos.php?id=<?php echo $user['id']; ?>">Emprestimos</a></td>
                         </tr>
                 <?php endforeach; ?>
                 <tbody>
             </table>
+            <a href="historico.php">Historico</a>
     </fieldset>
 </body>
 </html>

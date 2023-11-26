@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Nov-2023 às 21:26
+-- Tempo de geração: 26-Nov-2023 às 18:46
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -53,8 +53,30 @@ CREATE TABLE `emprestimos` (
   `livro_emprestimo` varchar(255) NOT NULL,
   `nome_livro` varchar(255) NOT NULL,
   `aluno_emprestimo` varchar(255) NOT NULL,
-  `data_emprestimo` date NOT NULL,
-  `data_devolucao` date NOT NULL
+  `data_emprestimo` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `emprestimos`
+--
+
+INSERT INTO `emprestimos` (`emprestimo_id`, `livro_emprestimo`, `nome_livro`, `aluno_emprestimo`, `data_emprestimo`) VALUES
+(13, '21', 'A culpa é das estrelas', 'Wesley', '2023-11-20'),
+(14, '21', 'A culpa é das estrelas', 'Wesley', '2023-11-20'),
+(15, '29', 'Jogador Nº1', 'Wesley', '2023-11-20');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `historico`
+--
+
+CREATE TABLE `historico` (
+  `id_hstorico` int(11) NOT NULL,
+  `emprestimo_id` int(11) NOT NULL,
+  `livro_id` int(11) NOT NULL,
+  `nome_livro` varchar(255) NOT NULL,
+  `nome_aluno` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -79,7 +101,7 @@ CREATE TABLE `livros` (
 INSERT INTO `livros` (`livro_id`, `nome`, `categoria`, `quantidade`, `imagem`, `categoria_id`) VALUES
 (19, 'Moby Dick', 'Ficção', 4, '../uploads/moby dick.jpg', 3),
 (20, '7 Desafios Para Ser Rei', 'Fantasia', 2, '../uploads/7 desafios.png', 4),
-(21, 'A culpa é das estrelas', 'Romance', 2, '../uploads/a culpa é das estrelas.jpg', 1),
+(21, 'A culpa é das estrelas', 'Romance', 0, '../uploads/a culpa é das estrelas.jpg', 1),
 (22, 'A 5 Passos de você', 'Romance', 3, '../uploads/a5passos.jpg', 1),
 (23, 'Como eu era antes de você', 'Romance', 1, '../uploads/como eu era.webp', 1),
 (24, 'Confissões de uma garota excluída, mal-amada e (um pouco) dramática ', 'Romance', 2, '../uploads/14-confissoes.jpg', 1),
@@ -87,7 +109,7 @@ INSERT INTO `livros` (`livro_id`, `nome`, `categoria`, `quantidade`, `imagem`, `
 (26, 'Conjurador: O aprendiz', 'Fantasia', 3, '../uploads/conjurador.jpg', 4),
 (27, 'Prince of thorns', 'Fantasia', 4, '../uploads/prince.png', 4),
 (28, 'O hobbit', 'Fantasia', 1, '../uploads/hobbit_amazon.jpg', 4),
-(29, 'Jogador Nº1', 'Ficção', 5, '../uploads/jogador-numero-1--foto-1.jpg', 3),
+(29, 'Jogador Nº1', 'Ficção', 4, '../uploads/jogador-numero-1--foto-1.jpg', 3),
 (30, 'Neuromancer', 'Ficção', 1, '../uploads/neuromancer.jpg', 3),
 (31, 'Dimensão Sci-fi', 'Ficção', 3, '../uploads/dimensão.jpg', 3),
 (32, 'Contos intergalácticos ', 'Ficção', 4, '../uploads/contos intergalaticos.jpg', 3),
@@ -139,6 +161,13 @@ ALTER TABLE `emprestimos`
   ADD PRIMARY KEY (`emprestimo_id`);
 
 --
+-- Índices para tabela `historico`
+--
+ALTER TABLE `historico`
+  ADD PRIMARY KEY (`id_hstorico`),
+  ADD KEY `historico_id_FK` (`emprestimo_id`);
+
+--
 -- Índices para tabela `livros`
 --
 ALTER TABLE `livros`
@@ -165,7 +194,13 @@ ALTER TABLE `categoria_livros`
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `emprestimo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `emprestimo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de tabela `historico`
+--
+ALTER TABLE `historico`
+  MODIFY `id_hstorico` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -177,11 +212,17 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `historico`
+--
+ALTER TABLE `historico`
+  ADD CONSTRAINT `historico_id_FK` FOREIGN KEY (`emprestimo_id`) REFERENCES `emprestimos` (`emprestimo_id`);
 
 --
 -- Limitadores para a tabela `livros`

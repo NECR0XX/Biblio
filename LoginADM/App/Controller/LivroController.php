@@ -21,6 +21,10 @@ class LivroController {
         $livros = $this->livroModel->listarLivros();
         include 'App/View/Livros/lista.php';
     }
+
+    public function atualizarLivro($livro_id, $nome, $categoria, $quantidade, $categoria_id) {
+        $this->livroModel->atualizarLivro($livro_id, $nome, $categoria, $quantidade, $categoria_id);
+    }
     
     public function excluirLivro ($livro_id) {
         $this->livroModel->excluirLivro($livro_id);
