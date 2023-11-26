@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Nov-2023 às 18:46
+-- Tempo de geração: 26-Nov-2023 às 20:36
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -56,15 +56,6 @@ CREATE TABLE `emprestimos` (
   `data_emprestimo` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Extraindo dados da tabela `emprestimos`
---
-
-INSERT INTO `emprestimos` (`emprestimo_id`, `livro_emprestimo`, `nome_livro`, `aluno_emprestimo`, `data_emprestimo`) VALUES
-(13, '21', 'A culpa é das estrelas', 'Wesley', '2023-11-20'),
-(14, '21', 'A culpa é das estrelas', 'Wesley', '2023-11-20'),
-(15, '29', 'Jogador Nº1', 'Wesley', '2023-11-20');
-
 -- --------------------------------------------------------
 
 --
@@ -76,8 +67,19 @@ CREATE TABLE `historico` (
   `emprestimo_id` int(11) NOT NULL,
   `livro_id` int(11) NOT NULL,
   `nome_livro` varchar(255) NOT NULL,
-  `nome_aluno` varchar(255) NOT NULL
+  `nome_aluno` varchar(255) NOT NULL,
+  `hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `historico`
+--
+
+INSERT INTO `historico` (`id_hstorico`, `emprestimo_id`, `livro_id`, `nome_livro`, `nome_aluno`, `hora`) VALUES
+(30, 35, 21, 'A culpa é das estrelas', 'Wesley', '2023-11-26 19:21:15'),
+(31, 33, 19, 'Moby Dick', 'Fabio', '2023-11-26 19:23:13'),
+(32, 36, 22, 'A 5 Passos de você', 'Fabio', '2023-11-26 19:23:15'),
+(33, 37, 36, 'Amigo Imaginário ', 'Fabio', '2023-11-26 19:23:17');
 
 -- --------------------------------------------------------
 
@@ -101,22 +103,22 @@ CREATE TABLE `livros` (
 INSERT INTO `livros` (`livro_id`, `nome`, `categoria`, `quantidade`, `imagem`, `categoria_id`) VALUES
 (19, 'Moby Dick', 'Ficção', 4, '../uploads/moby dick.jpg', 3),
 (20, '7 Desafios Para Ser Rei', 'Fantasia', 2, '../uploads/7 desafios.png', 4),
-(21, 'A culpa é das estrelas', 'Romance', 0, '../uploads/a culpa é das estrelas.jpg', 1),
-(22, 'A 5 Passos de você', 'Romance', 3, '../uploads/a5passos.jpg', 1),
+(21, 'A culpa é das estrelas', 'Romance', 9, '../uploads/a culpa é das estrelas.jpg', 1),
+(22, 'A 5 Passos de você', 'Romance', 4, '../uploads/a5passos.jpg', 1),
 (23, 'Como eu era antes de você', 'Romance', 1, '../uploads/como eu era.webp', 1),
 (24, 'Confissões de uma garota excluída, mal-amada e (um pouco) dramática ', 'Romance', 2, '../uploads/14-confissoes.jpg', 1),
-(25, 'O feiticeiro de terramar', 'Fantasia', 4, '../uploads/feiticeiro.webp', 4),
+(25, 'O feiticeiro de terramar', 'Fantasia', 5, '../uploads/feiticeiro.webp', 4),
 (26, 'Conjurador: O aprendiz', 'Fantasia', 3, '../uploads/conjurador.jpg', 4),
 (27, 'Prince of thorns', 'Fantasia', 4, '../uploads/prince.png', 4),
 (28, 'O hobbit', 'Fantasia', 1, '../uploads/hobbit_amazon.jpg', 4),
-(29, 'Jogador Nº1', 'Ficção', 4, '../uploads/jogador-numero-1--foto-1.jpg', 3),
+(29, 'Jogador Nº1', 'Ficção', 5, '../uploads/jogador-numero-1--foto-1.jpg', 3),
 (30, 'Neuromancer', 'Ficção', 1, '../uploads/neuromancer.jpg', 3),
 (31, 'Dimensão Sci-fi', 'Ficção', 3, '../uploads/dimensão.jpg', 3),
 (32, 'Contos intergalácticos ', 'Ficção', 4, '../uploads/contos intergalaticos.jpg', 3),
 (33, 'O vilarejo', 'Terror', 2, '../uploads/vilarejo.jpg', 2),
 (34, 'Bird box', 'Terror', 3, '../uploads/bIRD.webp', 2),
 (35, 'O livro maldito', 'Terror', 2, '../uploads/livro.webp', 2),
-(36, 'Amigo Imaginário ', 'Terror', 1, '../uploads/Amigo.jpg', 2),
+(36, 'Amigo Imaginário ', 'Terror', 2, '../uploads/Amigo.jpg', 2),
 (37, 'Cemitério Maldito', 'Terror', 2, '../uploads/cemiterio.jpg', 2);
 
 -- --------------------------------------------------------
@@ -194,13 +196,13 @@ ALTER TABLE `categoria_livros`
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `emprestimo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `emprestimo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `historico`
 --
 ALTER TABLE `historico`
-  MODIFY `id_hstorico` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hstorico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -217,12 +219,6 @@ ALTER TABLE `users`
 --
 -- Restrições para despejos de tabelas
 --
-
---
--- Limitadores para a tabela `historico`
---
-ALTER TABLE `historico`
-  ADD CONSTRAINT `historico_id_FK` FOREIGN KEY (`emprestimo_id`) REFERENCES `emprestimos` (`emprestimo_id`);
 
 --
 -- Limitadores para a tabela `livros`
