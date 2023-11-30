@@ -8,9 +8,15 @@ class UserModel {
 
     // Model para criar Users
     public function criarUser($nome, $email, $senha) {
-        $sql = "INSERT INTO users (nome, email, senha, tipo_usuario) VALUES (?, ?, ?, ?)";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$nome, $email, $senha, 2]);
+        try {
+            $sql = "INSERT INTO users (nome, email, senha, tipo_usuario) VALUES (?, ?, ?, ?)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$nome, $email, $senha, 2]);
+            return true;
+        } catch (PDOException $e) {
+            // Trate a exceção conforme necessário (por exemplo, logue o erro)
+            return false;
+        }
     }
 }
 ?>

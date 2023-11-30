@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Public/Css/style.css">
+    <link rel="stylesheet" href="Public/Css/style_book.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="Public/Js/script.js"></script>
@@ -49,16 +50,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
     <title>Lista de Livros</title>
 </head>
 <body>
-    <div class="user-icon" id="user-icon" onclick="showUserInfo()">
-        <ion-icon name="person-circle-outline"></ion-icon>
-    </div>
-    <div class="user-info" id="user-info">
-        <?php include '../Login/verifica_login.php'; ?>
-        <h2>Olá <?php echo $_SESSION['usuarioNomedeUsuario'], "!"; ?> </h2><br>
-        <button onclick="logout()"><h6>Sair</h6></button>
-    </div>
-
-    <a href="index.php">Voltar</a>
+    <header>
+        <h2>Serene Library</h2>
+        <div class="links">
+            <a href="index.php">
+                <ion-icon name="home-outline"></ion-icon>
+                <span class="text">Home</span>
+            </a>
+            <a href="book.php">
+                <ion-icon name="book-outline"></ion-icon>
+                <span class="text">Acervo</span>
+            </a>
+        </div>
+   
+        <div class="user-icon" id="user-icon" onclick="showUserInfo()">
+            <ion-icon name="person-circle-outline"></ion-icon>
+        </div>
+        <div class="user-info" id="user-info">
+        <?php
+            include '../Login/verifica_login.php'
+        ?>
+        <h3>Olá <?php echo $_SESSION['usuarioNomedeUsuario'], "!"; ?> </h3><br>
+        <h4>Livros Emprestados</h4>
+    <ul>
+        <?php $livrosEmprestados = $emprestimoController->listarLivrosEmprestados($_SESSION['usuarioNomedeUsuario']); ?>
+        <?php foreach ($livrosEmprestados as $emprestimo): ?>
+            <li>
+                <?php echo "<strong>ID do Livro: </strong>" . $emprestimo['livro_emprestimo']; ?> <br>
+                <?php echo "<strong>Livro: </strong>" . $emprestimo['nome_livro']; ?> <br>
+                <?php echo "<strong>Nome do Usuário: </strong>" . $emprestimo['aluno_emprestimo']; ?>
+                <form method="post" action="book.php">
+                    <input type="hidden" name="livro_id" value="<?php echo $emprestimo['emprestimo_id']; ?>">
+                    <button type="submit" name="devolver">Devolver</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+        <button onclick="logout()"><ion-icon name="log-out-outline"></ion-icon></button></div>
+    </header>
     
     <?php foreach ($livrosPorCategoria as $categoria => $livrosNaCategoria): ?>
         <h2><?php echo $categoria; ?></h2>
@@ -84,20 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
         </ul>
     <?php endforeach; ?>
 
-    <h2>Livros Emprestados</h2>
-    <ul>
-        <?php $livrosEmprestados = $emprestimoController->listarLivrosEmprestados($_SESSION['usuarioNomedeUsuario']); ?>
-        <?php foreach ($livrosEmprestados as $emprestimo): ?>
-            <li>
-                <?php echo "<strong>ID do Livro: </strong>" . $emprestimo['livro_emprestimo']; ?> <br>
-                <?php echo "<strong>Livro: </strong>" . $emprestimo['nome_livro']; ?> <br>
-                <?php echo "<strong>Nome do Usuário: </strong>" . $emprestimo['aluno_emprestimo']; ?>
-                <form method="post" action="book.php">
-                    <input type="hidden" name="livro_id" value="<?php echo $emprestimo['emprestimo_id']; ?>">
-                    <button type="submit" name="devolver">Devolver</button>
-                </form>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+
 </body>
 </html>
