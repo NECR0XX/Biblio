@@ -47,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
     <script src="Public/Js/script.js"></script>
     <script src="Public/Js/emprestimo.js"></script>
     <link rel="shortcut icon" href="Public/Assets/_31554896-b491-466e-b129-d77e088c3b0c-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Lista de Livros</title>
 </head>
 <body>
@@ -71,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
             include '../Login/verifica_login.php'
         ?>
         <h3>Olá <?php echo $_SESSION['usuarioNomedeUsuario'], "!"; ?> </h3><br>
-        <h4>Livros Emprestados</h4>
+        <h4>Livros Emprestados</h4><br>
     <ul>
         <?php $livrosEmprestados = $emprestimoController->listarLivrosEmprestados($_SESSION['usuarioNomedeUsuario']); ?>
         <?php foreach ($livrosEmprestados as $emprestimo): ?>
@@ -81,38 +84,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
                 <?php echo "<strong>Nome do Usuário: </strong>" . $emprestimo['aluno_emprestimo']; ?>
                 <form method="post" action="book.php">
                     <input type="hidden" name="livro_id" value="<?php echo $emprestimo['emprestimo_id']; ?>">
-                    <button type="submit" name="devolver">Devolver</button>
+                    <button type="submit" name="devolver">Devolver</button><br><br>
                 </form>
             </li>
         <?php endforeach; ?>
     </ul>
-        <button onclick="logout()"><ion-icon name="log-out-outline"></ion-icon></button></div>
+        <button id="log" onclick="logout()"><ion-icon name="log-out-outline"></ion-icon></button></div>
     </header>
-    
-    <?php foreach ($livrosPorCategoria as $categoria => $livrosNaCategoria): ?>
-        <h2><?php echo $categoria; ?></h2>
-        <ul>
-            <?php foreach ($livrosNaCategoria as $livro): ?>
-                <li>
-                    <?php
-                    if (!empty($livro['imagem'])) {
-                        echo '<img src="' . $livro['imagem'] . '" alt="Imagem do Livro" width="100">';
-                    } else {
-                        echo 'Sem Imagem';
-                    }
-                    ?>
-                    <?php echo $livro['nome']; ?> -
-                    <?php echo $livro['quantidade']; ?> -
-                    <form method="post" action="book.php">
-                        <input type="hidden" name="livro_id" value="<?php echo $livro['livro_id']; ?>">
-                        <input type="hidden" name="nome" value="<?php echo $livro['nome']; ?>">
-                        <button type="submit" name="emprestar">Emprestar</button>
-                    </form>
-                </li>
+    <section>
+        <div class="acervo">
+            <h1>Nosso Acervo</h1>
+        </div>
+                <div class="livros">
+            <?php foreach ($livrosPorCategoria as $categoria => $livrosNaCategoria): ?>
+                <div class="categoria">
+                    <h2><?php echo $categoria; ?></h2><br>
+                    <ul>
+                        <?php foreach ($livrosNaCategoria as $livro): ?>
+                            <li>
+                                <div class="livrobox">
+                                    <?php
+                                    if (!empty($livro['imagem'])) {
+                                        echo '<img src="' . $livro['imagem'] . '" alt="Imagem do Livro" width="100">';
+                                    } else {
+                                        echo 'Sem Imagem';
+                                    }
+                                    ?>
+                                    <?php echo $livro['nome']; ?><br>
+                                    <strong><?php echo $livro['quantidade']; ?> Livro(s)</strong> Disponíveis
+                                    <form method="post" action="book.php">
+                                        <input type="hidden" name="livro_id" value="<?php echo $livro['livro_id']; ?>">
+                                        <input type="hidden" name="nome" value="<?php echo $livro['nome']; ?>">
+                                        <button type="submit" name="emprestar">Emprestar</button>
+                                    </form>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             <?php endforeach; ?>
-        </ul>
-    <?php endforeach; ?>
-
-
+        </div>
+    </section>
+    <footer>
+        <p>Todos os direitos reservados</p>
+    </footer>
 </body>
 </html>
