@@ -14,7 +14,6 @@ class UserModel {
             $stmt->execute([$nome, $email, $senha, 2]);
             return true;
         } catch (PDOException $e) {
-            // Trate a exceção conforme necessário (por exemplo, logue o erro)
             return false;
         }
     }

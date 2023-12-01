@@ -27,14 +27,13 @@ body {
   text-align: center;
   color: rgba(255, 255, 255, 1);
   -webkit-text-stroke: 1px #E05576;
-  text-stroke: 1px #E05576;
   width: 50%;
 }
   
   /* cadastro */
 .cadastro_box {
     width: 490px;
-    height: 480px;
+    height: 455px;
     border-radius: 27px;
     background: #D9D9D99E;
     padding: 15px;
