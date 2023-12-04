@@ -25,7 +25,7 @@ session_start();
     </header>
 
     <section class="login_section">
-        <h1>Serene Library</h1>
+        <h1>ruru library</h1>
 
         <div class="login_box">
             <h2>Login</h2>

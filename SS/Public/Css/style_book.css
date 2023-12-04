@@ -19,7 +19,7 @@ header {
   align-items: center;
   height: 96px;
   border-radius: 0px 0px 20.9px 20.9px;
-  background: rgba(224, 85, 118, 1);
+  background: rgb(169, 255, 186);
   padding: 10px;
   margin: 0 0 50px 0;
 }
@@ -72,7 +72,7 @@ header h2{
   display: flex;
   width: 99vw;
   height: 186px;
-  background: rgba(0, 0, 0, 1);
+  background:rgb(169, 255, 186);
   align-items: center;
   justify-content: center;
   margin: 0 0 80px 0;
@@ -84,7 +84,7 @@ header h2{
   line-height: 67px;
   letter-spacing: 0.14em;
   text-align: center;
-  color: white;  
+  color: rgb(14, 13, 13);  
 }
 
 /* LIVROS */
@@ -106,7 +106,7 @@ header h2{
 .livros li {
   border-radius: 7px;
   border: 1px solid black;
-  background: whitesmoke;
+  background: rgb(109, 176, 123);
 }
 .livros .categoria {
   text-align: center;
@@ -117,7 +117,7 @@ header h2{
 }
 .categoria {
   border: 1px solid  rgb(0, 0, 0);
-  background: rgba(224, 85, 117, 0.756);
+  background:rgb(169, 255, 186);
   padding: 0 0 20px 0;
 }
 .livrobox {
@@ -136,7 +136,7 @@ footer {
   display: flex;
   width: 97vw;
   height: 67px;
-  background: rgba(0, 0, 0, 1);
+  background: rgb(169, 255, 186);
   align-items: center;
   padding: 15px;
   margin: 50px 0 0 0;
@@ -148,7 +148,7 @@ footer p {
   line-height: 33px;
   letter-spacing: 0.14em;
   text-align: center;
-  color: white;  
+  color: rgb(7, 7, 7);  
 }
 
 /* USER ICON */
