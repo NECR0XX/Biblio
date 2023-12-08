@@ -25,7 +25,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha'])) {
     <script src="Public/Js/script.js"></script>
     <title>Cadastro</title>
 </head>
-<body style="background-image: url('Public/Assets/library_index.jpg');">
+<body>
     <?php
     // Adicione esta parte para exibir a mensagem
     if (isset($_SESSION['mensagem'])) {
@@ -34,7 +34,7 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha'])) {
     }
     ?>
     <section class="cadastro_section">
-        <h1>Serene Library</h1>
+        <h1>ruru library</h1>
         <div class="cadastro_box">
             <h2>Fazer Cadastro</h2>
             <form method="post">
