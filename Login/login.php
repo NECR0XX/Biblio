@@ -14,7 +14,7 @@ session_start();
     <script src="Public/Js/script.js"></script>
     <title>Login</title>
 </head>
-<body style="background-image: url('Public/Assets/library_index.jpg');">
+<body>
     <header>
     <?php
         if(isset($_SESSION['nao_autenticado'])):
