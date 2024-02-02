@@ -24,5 +24,12 @@ class LivroModel {
         $atualizarQuantidade = $this->pdo->prepare("UPDATE livros SET quantidade = ? WHERE livro_id = ?");
         $atualizarQuantidade->execute([$novaQuantidade, $livroID]);
     }
+
+    public function listarLivrosPorCategoria($filtro) {
+        $constultaPorCategoria = $this->pdo->prepare("SELECT * FROM livros WHERE categoria = ?");
+        $constultaPorCategoria->execute([$filtro]);
+        return $constultaPorCategoria->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>

@@ -49,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>Serene Library - Index</title>
+    <title>ruru library - Index</title>
 </head>
 <body>
     <header>
-        <h2>Serene Library</h2>
+    <img style="border-radius: 100px;" src="Public/Assets/Grey Minimalist Bookstore Business Logo (3).png" width="100px">
         <div class="links">
             <a href="index.php">
                 <ion-icon name="home-outline"></ion-icon>
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
             </a>
             <a href="book.php">
                 <ion-icon name="book-outline"></ion-icon>
-                <span class="text">Acervo</span>
+                <span class="text">Livros</span>
             </a>
         </div>
    
@@ -94,35 +94,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['devolver'])) {
         <div class="banner">
             <div class="lines"></div>
             <div class="lines2"></div>
-            <img src="Public/Assets/Sob o luar sereno da noite sábia Na biblioteca silente, a luz inicia, Páginas sussurram segredos guardados O sereno dança nos livros encantados.png">
+            <img src="../SS/Public/Assets/banner.png">
             <div class="lines"></div>
             <div class="lines2"></div>
         </div>
         <div class="bioP">
-            <img src="Public/Assets/Pietro.jpeg" alt="Pietro">
-            <div class="lineBio"></div>
-            <div class="desc"><p>Pietro, nascido em uma pequena cidade costeira, é um escritor mestre que transforma pensamentos em prosa e sentimentos em poesia. 
-            Sua jornada literária começou nos diários, evoluindo para uma fusão de estudo acadêmico e paixão desenfreada por palavras. 
-            Graduado em Letras, tornou-se um colaborador destacado neste site, conquistando corações com suas palavras que capturam a essência da experiência humana.
-            Além de sua escrita envolvente, Pietro é conhecido por sua abordagem colaborativa e pelo estímulo aos escritores emergentes. 
-            Neste aniversário, celebramos sua contribuição única e aguardamos ansiosamente o que o futuro reserva sob sua pena magistral.</p></div>
+            <img src="Public/Assets/Longa história minimalista branco instagram post.png">
+            <img src="Public/Assets/imga.5.png">
         </div>
         <div class="bioO">
-            <img src="Public/Assets/Oscar.jpeg" alt="Oscar">
-            <div class="lineBio"></div>
-            <div class="desc"><p>Oscar Osvaldo é um talentoso autor e programador cujo dom para contar histórias se funde elegantemente com sua habilidade em código. 
-            Desde jovem, Oscar cativou leitores com narrativas envolventes, e ao abraçar a era digital, ele se tornou um mestre na programação, criando soluções inovadoras.
-            Contribuindo significativamente para este site, Oscar é reconhecido por seus artigos informativos e por compartilhar seu conhecimento tanto em escrita quanto em programação.
-            Sua paixão por inspirar outros é evidente, tornando-o uma figura respeitada na comunidade online. 
-            Oscar Osvaldo continua a explorar os limites entre palavras e códigos, deixando um impacto duradouro como um pioneiro em ambos os campos.</p></div>
+            <img src="Public/Assets/img2.png" >
+            <img src="Public/Assets/img.3.png" >
+            
         </div>
         <div class="pub">
-            <div class="cub"></div>
-            <div class="pubtext"><p>Clique <a href="book.php">Aqui</a> para acessar nosso acervo digital!</p></div>
+           
+            <div class="pubtext"><p>Clique <a href="book.php">Aqui</a> para acessar nossos livros digitais</p></div>
         </div>
     </section>
     <footer>
-        <p>Todos os direitos reservados</p>
+        <p> Direitos do site reservados</p>
     </footer>
 </body>
 </html>

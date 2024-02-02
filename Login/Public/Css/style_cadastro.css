@@ -11,7 +11,8 @@
 }
 
 body {
-  font-family: 'EuphoriaScript', sans-serif;
+ 
+  background-color: rgb(136, 239, 136);
 }
 .cadastro_section {
   display: flex;
@@ -26,7 +27,7 @@ body {
   letter-spacing: 0.14em;
   text-align: center;
   color: rgba(255, 255, 255, 1);
-  -webkit-text-stroke: 1px #E05576;
+  -webkit-text-stroke: 1px #55e0b2;
   width: 50%;
 }
   
@@ -72,7 +73,7 @@ body {
   border-radius: 6px;
   outline: none;
   border: none;
-  background: #E05576;
+  background: #6dd68d;
   margin: 10px 0 0 0;
   font-size: 20px;
   transition: background 1s ease-in-out;
@@ -80,7 +81,7 @@ body {
 
 .cadastro_box button:hover {
   cursor: pointer;
-  background: linear-gradient(to right, #FF7E91, #E05576);
+  background: linear-gradient(to right, #68de8b, #68de8b);
 }
 .alert {
   display: none;
@@ -89,7 +90,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: #d93a60;
+  background-color: #36f436;
   color: white;
   text-align: center;
   border-radius: 8px;

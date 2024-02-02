@@ -14,7 +14,7 @@ session_start();
     <script src="Public/Js/script.js"></script>
     <title>Login</title>
 </head>
-<body style="background-image: url('Public/Assets/library_index.jpg');">
+<body>
     <header>
     <?php
         if(isset($_SESSION['nao_autenticado'])):
@@ -25,7 +25,7 @@ session_start();
     </header>
 
     <section class="login_section">
-        <h1>Serene Library</h1>
+        <h1>ruru library</h1>
 
         <div class="login_box">
             <h2>Login</h2>
